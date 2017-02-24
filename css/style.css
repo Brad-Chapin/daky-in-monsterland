@@ -1,0 +1,14 @@
+.splash {
+  text-align: center;
+}
+.first{
+animation-delay:1s;
+}
+
+.second{
+animation-delay:1.25s;
+}
+
+.third{
+  animation-delay: 2.5s;
+}
