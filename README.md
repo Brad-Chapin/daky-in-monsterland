@@ -1,4 +1,4 @@
-# daky-in-monsterland
+# Daky in Monsterland
 ...a simple survival/strategy game for one player.
 
 [View my project proposal page here.]
