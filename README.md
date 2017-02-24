@@ -7,7 +7,8 @@
 [View my workflow on pivotal tracker here.]
 (https://www.pivotaltracker.com/n/projects/1978859)
 
-*Wireframes:*
+_Wireframes:_
+
 [Splash page]
 (https://wireframe.cc/ODaWuB)
 
