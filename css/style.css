@@ -52,6 +52,11 @@ body {
   display: block;
   margin: 0 auto;
   animation-delay: 3.5s;
+  padding-bottom: 15px;
+}
+
+.title-top {
+  padding-top: 15px;
 }
 
 /*general styling*/
@@ -64,19 +69,14 @@ body {
 }
 
 /*fonts*/
-/*.daky {
-  font-family: TOONEYNO;
-}*/
+@font-face {
+    font-family: 'agentorange';
+    src: url('../fonts/agentorange.ttf') format('truetype');
+    /*font-weight: normal;
+    font-style: normal;*/
+}
 
-/*@font-face {
-    font-family: 'tooneyno';
-    src: url('fonts/TOONEYNO.ttf');
-    font-weight: normal;
-    font-style: normal;
-}*/
-/*@font-face {
-    font-family: 'EntezareZohoor2';
-    src: url('fonts/EntezareZohoor2.eot'), url('fonts/EntezareZohoor2.ttf') format('truetype'), url('fonts/EntezareZohoor2.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}*/
+.daky {
+  font-family: agentorange;
+  color: green;
+}
