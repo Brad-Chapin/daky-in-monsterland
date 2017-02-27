@@ -4,7 +4,8 @@ var game = new Phaser.Game(700, 480, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
   game.load.image("dakysprite", "assets/dakysprite.png");
-  game.load.tilemap("dakygrid", "assets//tiles/dakygrid.json", null, Phaser.Tilemap.TILED_JSON);
+  game.load.tilemap("dakygrid", "assets/tiles/dakygrid.json", null, Phaser.Tilemap.TILED_JSON);
+  game.load.image("tiles", "assets/tiles/grass-tiles-2-small.png");
 }
 
 function create() {
