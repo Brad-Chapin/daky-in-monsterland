@@ -59,17 +59,21 @@ body {
   text-align: center;
 }
 
-/*fonts*/
-.daky {
-  font-family: TOONEYNO;
+.about-ul {
+  list-style: none;
 }
 
-@font-face {
+/*fonts*/
+/*.daky {
+  font-family: TOONEYNO;
+}*/
+
+/*@font-face {
     font-family: 'tooneyno';
     src: url('fonts/TOONEYNO.ttf');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 /*@font-face {
     font-family: 'EntezareZohoor2';
     src: url('fonts/EntezareZohoor2.eot'), url('fonts/EntezareZohoor2.ttf') format('truetype'), url('fonts/EntezareZohoor2.svg') format('svg');
