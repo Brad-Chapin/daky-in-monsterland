@@ -81,8 +81,8 @@ a{
 @font-face {
     font-family: 'agentorange';
     src: url('../fonts/agentorange.ttf') format('truetype');
-    /*font-weight: normal;
-    font-style: normal;*/
+    font-weight: normal;
+    font-style: normal;
 }
 
 .daky {
