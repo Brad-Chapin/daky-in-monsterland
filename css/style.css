@@ -1,14 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*nav styling*/
+.nav ul {
+  list-style: none;
+  background-color: #444;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-right: 10px;
+  margin-left: 15px;
+  display: inline;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo {
+  float: left;
+  height: 40px;
+}
+
+.play {
+  margin-right: 30px;
+}
+
+/*splash page styling*/
 .splash {
   text-align: center;
 }
 .first{
-animation-delay:1s;
+  animation-delay:1s;
 }
 
 .second{
-animation-delay:1.25s;
+  animation-delay:2s;
 }
 
-.third{
-  animation-delay: 2.5s;
+.hero {
+  display: block;
+  margin: 0 auto;
+  animation-delay: 3.5s;
 }
+
+/*general styling*/
+.title {
+  text-align: center;
+}
+
+/*fonts*/
+.daky {
+  font-family: TOONEYNO;
+}
+
+@font-face {
+    font-family: 'tooneyno';
+    src: url('fonts/TOONEYNO.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+/*@font-face {
+    font-family: 'EntezareZohoor2';
+    src: url('fonts/EntezareZohoor2.eot'), url('fonts/EntezareZohoor2.ttf') format('truetype'), url('fonts/EntezareZohoor2.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}*/
