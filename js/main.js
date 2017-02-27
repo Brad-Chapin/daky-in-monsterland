@@ -7,9 +7,10 @@ function preload() {
   game.load.tilemap("dakygrid", "assets/tiles/dakygrid.json", null, Phaser.Tilemap.TILED_JSON);
   game.load.image("tiles", "assets/tiles/grass-tiles-2-small.png");
 }
-
+var grid;
 function create() {
-  game.add.tilemap("dakygrid");
+  grid = game.add.tilemap("dakygrid");
+  grid.addTilesetImage("grass", "tiles");
   game.add.sprite(650, 450, 'dakysprite');
 }
 
