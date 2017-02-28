@@ -71,6 +71,14 @@ p {
   list-style: none;
 }
 
+.dir {
+  border: 1px solid black;
+}
+
+.controls {
+  padding-top: 50px;
+}
+
 /*fonts*/
 a{
   color: darkgreen;
@@ -82,7 +90,7 @@ a{
     font-style: normal;
 }
 
-.daky {
+.dakyFont {
   font-family: agentorange;
   color: darkgreen;
 }
