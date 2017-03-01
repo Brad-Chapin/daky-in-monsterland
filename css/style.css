@@ -71,12 +71,23 @@ p {
   list-style: none;
 }
 
+/*game controls*/
+.top-ctrl {
+  border: 3px solid darkgreen;
+  height:100px;
+  width:100px;
+  margin: 0px 3px 3px 3px;
+}
 .dir {
-  border: 1px solid black;
+  border: 3px solid darkgreen;
+  height:66px;
+  width:66px;
+  margin: 0px 1px 1px 1px;
+  padding: 0;
 }
 
 .controls {
-  padding-top: 50px;
+  padding-top: 53px;
 }
 
 /*fonts*/
