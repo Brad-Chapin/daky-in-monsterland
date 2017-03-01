@@ -1,5 +1,6 @@
 # Daky in Monsterland
 ...a simple survival/strategy game for one player.
+
 [Play Daky in Monsterland!]
 (daky-in-monsterland.surge.sh)
 
