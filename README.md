@@ -17,3 +17,7 @@ _Wireframes:_
 
 [Game play page]
 (https://wireframe.cc/I5DazT)
+
+[Play Daky in Monsterland!]
+(daky-in-monsterland.surge.sh)
+
