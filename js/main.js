@@ -35,35 +35,22 @@ function create() {
     let x = Math.floor(Math.random()*21)*32;
     let y = Math.floor(Math.random()*15)*32;
     if ((x == 352) && (y == 224)){
-      x+= 64;
-      y+= 64;
+      moveIt();
     }
-    if (whichMonst == 0){
-      monster = monsters.create (x, y, "monst1");
-      game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
+    switch (whichMonst) {
+      case 0:
+        monster = monsters.create (x, y, "monst1");
+        game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
+        break;
+      case 1:
+        monster = monsters.create (x, y, "monst2");
+        game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
+        break;
+      case 2:
+        monster = monsters.create (x, y, "monst3");
+        game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
+        break;
     }
-    else if (whichMonst == 1){
-      monster = monsters.create (x, y, "monst2");
-      game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
-    }
-    else {
-      monster = monsters.create (x, y, "monst3");
-      game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
-    }
-    // switch (whichMonst) {
-    //   case 0:
-    //     monster = monsters.create (x, y, "monst1");
-    //     (game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
-    //     break;
-    //   case 1:
-    //     monster = monsters.create (x, y, "monst2");
-    //     (game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
-    //     break;
-    //   case 2:
-    //     monster = monsters.create (x, y, "monst3");
-    //     (game.physics.arcade.overlap(monster, monsters, moveIt, null, this);
-    //     break;
-    // }
   }
 
   function moveIt (){
