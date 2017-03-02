@@ -8,7 +8,7 @@ body {
 /*nav styling*/
 .nav ul {
   list-style: none;
-  background-color: #489996;
+  background-color: #00bfa5;
   text-align: right;
   padding: 0;
   margin: 0;
@@ -63,7 +63,7 @@ body {
 
 /*general styling*/
 p {
-  background-color: #489996;
+  background-color: #00bfa5;
   padding: 10px;
 }
 

@@ -11,7 +11,7 @@ function preload() {
   game.load.image("monst3", "assets/monst3.png");
 
 }
-var map, layer, player, monsters;
+var map, layer, player, monsters, score, wave;
 var moved = false;
 
 function create() {
@@ -27,13 +27,14 @@ function create() {
   player.body.collideWorldBounds = true;
 
   monsters = game.add.group();
+  console.log(monsters);
   monsters.enableBody = true;
 
   for (let i = 0; i < 6; i++){
-    let monster;
-    let whichMonst = Math.floor(Math.random()*3);
-    let x = Math.floor(Math.random()*21)*32;
-    let y = Math.floor(Math.random()*15)*32;
+    var monster;
+    var whichMonst = Math.floor(Math.random()*3);
+    var x = Math.floor(Math.random()*21)*32;
+    var y = Math.floor(Math.random()*15)*32;
     if ((x == 352) && (y == 224)){
       moveIt();
     }
@@ -71,6 +72,7 @@ function create() {
     if ((player.x!=0) && (player.y!=0)){
       player.y-=32;
       player.x-=32;
+      moved = true;
     }
   });
 
@@ -82,6 +84,7 @@ function create() {
     if ((player.x!=672) && (player.y!=0)){
       player.y-=32;
       player.x+=32;
+      moved = true;
     }
   });
 
@@ -101,6 +104,7 @@ function create() {
     if ((player.x!=0) && (player.y!=480)){
       player.y+=32;
       player.x-=32;
+      moved = true;
     }
   });
 
@@ -112,17 +116,36 @@ function create() {
     if ((player.x!=672) && (player.y!=480)){
       player.x+=32;
       player.y+=32;
+      moved = true;
     }
   });
+  function monsterMove (){
+    // TODO: write monster move logic, add to player move clicks
+  }
   // controls end
 }
 
 function update() {
   // begin update fn
+  game.physics.arcade.collide(monsters, monsters);
+  game.physics.arcade.collide(player, monsters);
 
+  game.physics.arcade.overlap(monsters, monsters, killMonsters, null, this);
+  game.physics.arcade.overlap(player, monsters, killPlayer, null, this);
+
+  function killPlayer (){
+    // TODO: write player kill fn
+  }
 
   // end update fn
 }
+
+  function killMonsters (... monsters) {
+    for (let i = 0; i < arguments.length; i++){
+      monster.kill();
+      score++;
+    }
+  }
 });
 
 // Math.floor(Math.random()*21)*32 returns //(0-22)*32
