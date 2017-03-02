@@ -209,6 +209,7 @@ function update() {
   game.physics.arcade.collide(player, monsters);
   game.physics.arcade.collide(monsters, fires)
 
+  // game.physics.arcade.overlap(monsters, monsters, moveIt, null, this);
   game.physics.arcade.overlap(monsters, monsters, killMonsters, null, this);
   game.physics.arcade.overlap(player, monsters, killPlayer, null, this);
   game.physics.arcade.overlap(fires, monsters, killMonsters, null, this);
@@ -217,16 +218,17 @@ function update() {
     // TODO: write player kill fn
   }
 
+    function killMonsters (monsters, monsters) {
+      monsters.children.forEach(function (e){
+        e.kill();
+        score++;
+        console.log(score);
+      });
+    }
 
   // end update fn
 }
 
-  function killMonsters (... monsters) {
-    // for (let i = 0; i < arguments.length; i++){
-    //   monster.kill();
-    //   score++;
-    // }
-  }
 });
 
 // Math.floor(Math.random()*21)*32 returns //(0-22)*32
