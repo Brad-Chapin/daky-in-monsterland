@@ -38,7 +38,7 @@ function create() {
     var whichMonst = Math.floor(Math.random()*3);
     var x = Math.floor(Math.random()*21)*32;
     var y = Math.floor(Math.random()*15)*32;
-    if ((x == 352) && (y == 224)){
+    if ((x == player.x) && (y == player.y)){
       moveIt();
     }
     switch (whichMonst) {
@@ -108,18 +108,16 @@ function create() {
     fire6 = fires.create(player.x-32, player.y+32, "fire");
     fire7 = fires.create(player.x, player.y+32, "fire");
     fire8 = fires.create(player.x+32, player.y+32, "fire");
-    setTimeout(killFire, 1500);
-
+    console.dir(fires);
+    timeOut();
   });
+  function timeOut(){
+    setTimeout(killFire, 1500);
+  }
   function killFire (){
-    fire1.destroy();
-    fire2.destroy();
-    fire3.destroy();
-    fire4.destroy();
-    fire5.destroy();
-    fire6.destroy();
-    fire7.destroy();
-    fire8.destroy();
+    while (fires.children.length > 0){
+      fires.children[0].destroy();
+    }
   }
 
   $("#fly").on("click", function (){
@@ -127,6 +125,7 @@ function create() {
     var y = Math.floor(Math.random()*15)*32;
     player.x =x;
     player.y = y;
+    monsterMove();
   });
 
   $("#upLeft").on("click", function (){
