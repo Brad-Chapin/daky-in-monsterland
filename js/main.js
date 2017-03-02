@@ -155,6 +155,7 @@ function create() {
       player.y+=32;
       player.x-=32;
       moved = true;
+      monsterMove();
     }
   });
 
