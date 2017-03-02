@@ -9,10 +9,12 @@ function preload() {
   game.load.image("monst1", "assets/monst1.png");
   game.load.image("monst2", "assets/monst2.png");
   game.load.image("monst3", "assets/monst3.png");
+  game.load.image("fire", "assets/fire.png");
 
 }
-var map, layer, player, monsters, score, wave;
+var map, layer, player, monsters, score, wave, fires;
 var moved = false;
+var firebreath = 1;
 
 function create() {
 
@@ -26,8 +28,15 @@ function create() {
   game.physics.arcade.enable(player);
   player.body.collideWorldBounds = true;
 
+  var plusX = player.x + 32;
+  var minusX = player.x -32;
+  var plusY = player.y + 32;
+  var minusY = player.y -32;
+
   monsters = game.add.group();
   monsters.enableBody = true;
+  fires = game.add.group();
+  fires.enableBody = true;
 
   for (let i = 0; i < 6; i++){
     var monster;
@@ -96,8 +105,27 @@ function create() {
 
   // controls start
   $("#fire").on("click", function (){
-    // TODO: set up kill function and display
+    fire1 = fires.create(minusX, minusY, "fire");
+    fire2 = fires.create(player.x, minusY, "fire");
+    fire3 = fires.create(plusX, minusY, "fire");
+    fire4 = fires.create(minusX, player.y,"fire");
+    fire5 = fires.create(plusX, player.y, "fire");
+    fire6 = fires.create(minusX, plusY, "fire");
+    fire7 = fires.create(player.x, plusY, "fire");
+    fire8 = fires.create(plusX, plusY, "fire");
+    setTimeout(killFire, 1500);
+
   });
+  function killFire (){
+    fire1.destroy();
+    fire2.destroy();
+    fire3.destroy();
+    fire4.destroy();
+    fire5.destroy();
+    fire6.destroy();
+    fire7.destroy();
+    fire8.destroy();
+  }
 
   $("#fly").on("click", function (){
     var x = Math.floor(Math.random()*21)*32;
@@ -185,22 +213,25 @@ function update() {
   // begin update fn
   game.physics.arcade.collide(monsters, monsters);
   game.physics.arcade.collide(player, monsters);
+  game.physics.arcade.collide(monsters, fires)
 
   game.physics.arcade.overlap(monsters, monsters, killMonsters, null, this);
   game.physics.arcade.overlap(player, monsters, killPlayer, null, this);
+  game.physics.arcade.overlap(fires, monsters, killMonsters, null, this);
 
   function killPlayer (){
     // TODO: write player kill fn
   }
 
+
   // end update fn
 }
 
   function killMonsters (... monsters) {
-    for (let i = 0; i < arguments.length; i++){
-      monster.kill();
-      score++;
-    }
+    // for (let i = 0; i < arguments.length; i++){
+    //   monster.kill();
+    //   score++;
+    // }
   }
 });
 
