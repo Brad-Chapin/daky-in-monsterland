@@ -28,11 +28,6 @@ function create() {
   game.physics.arcade.enable(player);
   player.body.collideWorldBounds = true;
 
-  var plusX = player.x + 32;
-  var minusX = player.x -32;
-  var plusY = player.y + 32;
-  var minusY = player.y -32;
-
   monsters = game.add.group();
   monsters.enableBody = true;
   fires = game.add.group();
@@ -105,14 +100,14 @@ function create() {
 
   // controls start
   $("#fire").on("click", function (){
-    fire1 = fires.create(minusX, minusY, "fire");
-    fire2 = fires.create(player.x, minusY, "fire");
-    fire3 = fires.create(plusX, minusY, "fire");
-    fire4 = fires.create(minusX, player.y,"fire");
-    fire5 = fires.create(plusX, player.y, "fire");
-    fire6 = fires.create(minusX, plusY, "fire");
-    fire7 = fires.create(player.x, plusY, "fire");
-    fire8 = fires.create(plusX, plusY, "fire");
+    fire1 = fires.create(player.x-32, player.y-32, "fire");
+    fire2 = fires.create(player.x, player.y-32, "fire");
+    fire3 = fires.create(player.x+32, player.y-32, "fire");
+    fire4 = fires.create(player.x-32, player.y,"fire");
+    fire5 = fires.create(player.x+32, player.y, "fire");
+    fire6 = fires.create(player.x-32, player.y+32, "fire");
+    fire7 = fires.create(player.x, player.y+32, "fire");
+    fire8 = fires.create(player.x+32, player.y+32, "fire");
     setTimeout(killFire, 1500);
 
   });
