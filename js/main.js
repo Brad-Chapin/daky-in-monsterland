@@ -100,7 +100,10 @@ function create() {
   });
 
   $("#fly").on("click", function (){
-    // TODO: set up "fly" logic
+    var x = Math.floor(Math.random()*21)*32;
+    var y = Math.floor(Math.random()*15)*32;
+    player.x =x;
+    player.y = y;
   });
 
   $("#upLeft").on("click", function (){
