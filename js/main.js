@@ -27,7 +27,6 @@ function create() {
   player.body.collideWorldBounds = true;
 
   monsters = game.add.group();
-  console.log(monsters);
   monsters.enableBody = true;
 
   for (let i = 0; i < 6; i++){
@@ -54,6 +53,42 @@ function create() {
     }
   }
 
+  function monsterMove () {
+    monsters.children.forEach(function (e){
+      switch (true) {
+        case ((e.x < player.x) && (e.y < player.y)):
+          e.x+=32;
+          e.y+=32;
+          break;
+        case ((e.x > player.x) && (e.y > player.y)):
+          e.x-=32;
+          e.y-=32;
+          break;
+        case ((e.x > player.x) && (e.y < player.y)):
+          e.x-=32;
+          e.y+=32;
+          break;
+        case ((e.x < player.x) && (e.y > player.y)):
+          e.x+=32;
+          e.y-=32;
+          break;
+        case ((e.x == player.x) && (e.y < player.y)):
+          e.y+=32;
+          break;
+        case ((e.x == player.x) && (e.y > player.y)):
+          e.y-=32;
+          break;
+        case ((e.x < player.x) && (e.y == player.y)):
+          e.x+=32;
+          break;
+        case ((e.x > player.x) && (e.y == player.y)):
+          e.x-=32;
+          break;
+      }
+    });
+    moved = false;
+  }
+
   function moveIt (){
     x+= 64;
     y+= 64;
@@ -73,11 +108,16 @@ function create() {
       player.y-=32;
       player.x-=32;
       moved = true;
+      monsterMove();
     }
   });
 
   $("#up").on("click", function (){
-    player.y -= 32;
+    if (player.y!=0){
+      player.y -= 32;
+      moved = true;
+      monsterMove();
+    }
   });
 
   $("#upRight").on("click", function (){
@@ -85,19 +125,29 @@ function create() {
       player.y-=32;
       player.x+=32;
       moved = true;
+      monsterMove();
     }
   });
 
   $("#left").on("click", function (){
-    player.x-=32;
+    if (player.x!=0){
+      player.x-=32;
+      moved = true;
+      monsterMove();
+    }
   });
 
   $("#pass").on("click", function (){
-    // TODO: pass logic
+    moved= true;
+    monsterMove();
   });
 
   $("#right").on("click", function (){
-    player.x+=32;
+    if (player.x!=672){
+      player.x+=32;
+      moved = true;
+      monsterMove();
+    }
   });
 
   $("#downLeft").on("click", function (){
@@ -109,7 +159,11 @@ function create() {
   });
 
   $("#down").on("click", function (){
-    player.y+=32;
+    if (player.y!=480){
+      player.y+=32;
+      moved = true;
+      monsterMove();
+    }
   });
 
   $("#downRight").on("click", function (){
@@ -117,11 +171,9 @@ function create() {
       player.x+=32;
       player.y+=32;
       moved = true;
+      monsterMove();
     }
   });
-  function monsterMove (){
-    // TODO: write monster move logic, add to player move clicks
-  }
   // controls end
 }
 
