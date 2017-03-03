@@ -10,6 +10,7 @@ function preload() {
   game.load.image("monst2", "assets/monst2.png");
   game.load.image("monst3", "assets/monst3.png");
   game.load.image("fire", "assets/fire.png");
+  game.load.image("skull", 'assets/skull.png')
 
 }
 var map, layer, player, monster, monsters, fires;
@@ -36,9 +37,14 @@ function create() {
   monsters = game.add.group();
   monsters.enableBody = true;
   monsters.physicsBodyType = Phaser.Physics.ARCADE;
+
   fires = game.add.group();
   fires.enableBody = true;
   fires.physicsBodyType = Phaser.Physics.ARCADE;
+
+  skulls = game.add.group();
+  skulls.enableBody = true;
+  skulls.physicsBodyType = Phaser.Physics.ARCADE;
 
   for (let i = 0; i < spawnCount; i++){
     // var monster;
@@ -117,7 +123,6 @@ function create() {
     fire6 = fires.create(player.x-32, player.y+32, "fire");
     fire7 = fires.create(player.x, player.y+32, "fire");
     fire8 = fires.create(player.x+32, player.y+32, "fire");
-    console.dir(fires);
     timeOut();
   });
   function timeOut(){
@@ -207,7 +212,7 @@ function create() {
       player.x+=32;
       player.y+=32;
       moved = true;
-      // monsterMove();
+      monsterMove();
     }
   });
   // controls end
@@ -215,70 +220,74 @@ function create() {
 
 function update() {
   // begin update fn
-  game.physics.arcade.collide(monsters, monsters);
+  game.physics.arcade.collide(monsters);
+  game.physics.arcade.collide(skulls, monsters);
   game.physics.arcade.collide(player, monsters);
   game.physics.arcade.collide(monsters, fires)
 
+  game.physics.arcade.collide(skulls, monsters, skullKill, null, this);
   game.physics.arcade.collide(monsters, monsters, killMonsters, null, this);
   game.physics.arcade.collide(player, monsters, killPlayer, null, this);
   game.physics.arcade.collide(fires, monsters, killMonsters, null, this);
+
+  if (monsters.countLiving() == 0){
+  wave++;
+  spawnCount = (wave * 3) +6;
+  resetDaky();
+  addMonsters();
+  killSkulls();
+}
 
   function killPlayer (){
     // TODO: write player kill fn
   }
 
-    function killMonsters (monster) {
-        monster.destroy();
-        score++;
-      if (monsters.children.length == 0){
-        wave++;
-        spawnCount = (wave * 3) +6;
-        resetDaky();
-        addMonsters();
-        console.log(score);
+  function skullKill (skulls, monster) {
+    monster.kill();
+  }
+
+    function killSkulls () {
+      while (skulls.children.length > 0){
+        skulls.children[0].destroy();
       }
     }
 
-      function killWithFire (fire, monster) {
-        monster.destroy();
-        score++;
-        if (monsters.children.length == 0){
-          wave++;
-          spawnCount = (wave * 3) +6;
-          resetDaky();
-          addMonsters();
-        }
+  function killMonsters (monster1, monster2) {
+        monster1.kill();
+        monster2.kill();
+        skull = skulls.create(monster1.x, monster2.y, "skull");
+    }
+
+  function killWithFire (fire, monster) {
+        monster.kill();
       }
 
-      function addMonsters () {
-        for (let i = 0; i < spawnCount; i++){
-          var monster;
-          var whichMonst = Math.floor(Math.random()*3);
-          var x = Math.floor(Math.random()*21)*32;
-          var y = Math.floor(Math.random()*15)*32;
-          if ((x == player.x) && (y == player.y )){
-            moveIt();
-          }
-          switch (whichMonst) {
-            case 0:
-              monster = monsters.create (x, y, "monst1");
-              break;
-            case 1:
-              monster = monsters.create (x, y, "monst2");
-              break;
-            case 2:
-              monster = monsters.create (x, y, "monst3");
-              break;
-          }
-        }
-      }
+      function addMonsters() {
+    		spawnPoints = [];
+    		spawnPoints.push(player.x + "-" + player.y);
+    		for (i = 0; i < spawnCount; i++) {
+    			var monster;
+    			var check = true;
+    			var x;
+    			var y;
+    			while (check == true) {
+    				x = Math.floor(Math.random() * 21) * 32;
+    				y = Math.floor(Math.random() * 15) * 32;
+    				if (spawnPoints.indexOf(x + "-" + y) == -1) {
+    					spawnPoints.push(x + "-" + y);
+    					monster = monsters.create(x, y, "monst" + (Math.floor(Math.random() * 3) + 1));
+    					check = false;
+    				}
+    			}
+    		}
+    	}
 
-      function resetDaky (){
+  function resetDaky (){
         player.x = 352;
         player.y = 224;
       }
 
-      function moveIt (){
+  function moveIt (){
         x+= 64;
         y+= 64;
       }

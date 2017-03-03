@@ -62,7 +62,7 @@ body {
 }
 
 /*general styling*/
-p {
+.text-p {
   background-color: #00bfa5;
   padding: 10px;
 }
@@ -72,12 +72,20 @@ p {
 }
 
 /*game controls*/
+.top-disp {
+  border: 3px solid darkgreen;
+  height:94px;
+  width:94px;
+  margin: 0px 3px 3px 3px;
+}
+
 .top-ctrl {
   border: 3px solid darkgreen;
   height:100px;
   width:100px;
   margin: 0px 3px 3px 3px;
 }
+
 .dir {
   border: 3px solid darkgreen;
   height:66px;
