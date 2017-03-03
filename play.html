@@ -31,15 +31,39 @@
      <script src="js/main.js" type="text/javascript"></script>
    </div>
    <div class="three columns controls">
+
+     <!-- modal start -->
+     <div id="myModal" class="modal">
+      <div class="modal-content">
+      <div class="row">
+        <div class="nine columns">
+          <h2 class="dakyFont">Game Over!</h2>
+          <p>Click 'new game' to try again!</p>
+        </div>
+        <div class="three columns">
+          <div class="row game-over">
+            <a href="play.html">New Game?</a>
+          </div>
+          <div class="row game-over">
+            <a href="index.html">...or go home?</a>
+          </div>
+        </div>
+      </div>
+ </div>
+</div>
+     <!-- modal end -->
+     <div class="row">
+       <div class="splash firebreath-style">Firebreath remaining: <span id="firebreath">1</span></div>
+     </div>
     <div class="row">
       <div class="six columns">
         <div class="top-disp splash">
-          <p>Score</p>  <p>0</p>
+          <p>Score</p>  <p id="score">0</p>
         </div>
       </div>
       <div class="six columns">
         <div class="top-disp splash">
-          <p>Wave</p> <p>1</p>
+          <p>Wave</p> <p id="wave">1</p>
         </div>
       </div>
     </div>

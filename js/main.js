@@ -21,6 +21,7 @@ var firebreath = 1;
 var playerSpawn = [352, 224];
 var spawnCount = 6;
 var spawned = [];
+var modal = document.getElementById("myModal");
 
 function create() {
 
@@ -46,31 +47,7 @@ function create() {
   skulls.enableBody = true;
   skulls.physicsBodyType = Phaser.Physics.ARCADE;
 
-  for (let i = 0; i < spawnCount; i++){
-    // var monster;
-    var whichMonst = Math.floor(Math.random()*3);
-    var x = Math.floor(Math.random()*21)*32;
-    var y = Math.floor(Math.random()*15)*32;
-    if ((x == player.x) && (y == player.y )){
-      moveIt();
-    }
-    switch (whichMonst) {
-      case 0:
-        monster = monsters.create (x, y, "monst1");
-        spawned.push(monster);
-        break;
-      case 1:
-        monster = monsters.create (x, y, "monst2");
-        spawned.push(monster);
-
-        break;
-      case 2:
-        monster = monsters.create (x, y, "monst3");
-        spawned.push(monster);
-
-        break;
-    }
-  }
+  addMonsters();
 
   function monsterMove () {
     monsters.children.forEach(function (e){
@@ -115,15 +92,18 @@ function create() {
 
   // controls start
   $("#fire").on("click", function (){
-    fire1 = fires.create(player.x-32, player.y-32, "fire");
-    fire2 = fires.create(player.x, player.y-32, "fire");
-    fire3 = fires.create(player.x+32, player.y-32, "fire");
-    fire4 = fires.create(player.x-32, player.y,"fire");
-    fire5 = fires.create(player.x+32, player.y, "fire");
-    fire6 = fires.create(player.x-32, player.y+32, "fire");
-    fire7 = fires.create(player.x, player.y+32, "fire");
-    fire8 = fires.create(player.x+32, player.y+32, "fire");
-    timeOut();
+    if (firebreath > 0) {
+      fire1 = fires.create(player.x-32, player.y-32, "fire");
+      fire2 = fires.create(player.x, player.y-32, "fire");
+      fire3 = fires.create(player.x+32, player.y-32, "fire");
+      fire4 = fires.create(player.x-32, player.y,"fire");
+      fire5 = fires.create(player.x+32, player.y, "fire");
+      fire6 = fires.create(player.x-32, player.y+32, "fire");
+      fire7 = fires.create(player.x, player.y+32, "fire");
+      fire8 = fires.create(player.x+32, player.y+32, "fire");
+      firebreath--;
+      timeOut();
+    }
   });
   function timeOut(){
     setTimeout(killFire, 1000);
@@ -222,24 +202,39 @@ function update() {
   // begin update fn
   game.physics.arcade.collide(monsters);
   game.physics.arcade.collide(skulls, monsters);
+  game.physics.arcade.collide(skulls, player);
   game.physics.arcade.collide(player, monsters);
   game.physics.arcade.collide(monsters, fires)
 
+  game.physics.arcade.collide(skulls, player, skullDeath, null, this);
   game.physics.arcade.collide(skulls, monsters, skullKill, null, this);
   game.physics.arcade.collide(monsters, monsters, killMonsters, null, this);
-  game.physics.arcade.collide(player, monsters, killPlayer, null, this);
+  game.physics.arcade.collide(player, monsters, monsterDeath, null, this);
   game.physics.arcade.collide(fires, monsters, killMonsters, null, this);
 
   if (monsters.countLiving() == 0){
   wave++;
+  firebreath++;
   spawnCount = (wave * 3) +6;
   resetDaky();
   addMonsters();
   killSkulls();
 }
 
-  function killPlayer (){
-    // TODO: write player kill fn
+  $("#score").text(monsters.countDead());
+  $("#wave").text(wave +1);
+  $("#firebreath").text(firebreath);
+
+// end update fn
+}
+  function skullDeath (player, skulls){
+    player.kill();
+    gameOver();
+  }
+
+  function monsterDeath (player, monsters){
+    player.kill();
+    gameOver();
   }
 
   function skullKill (skulls, monster) {
@@ -292,7 +287,11 @@ function update() {
         y+= 64;
       }
 
-  // end update fn
-}
+  function gameOver (){
+    modal.style.display = "block";
+  }
+  $("#myModal").on("click", function (){
+    modal.style.display = "hidden";
+  })
 
 });
