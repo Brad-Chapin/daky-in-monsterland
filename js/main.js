@@ -228,7 +228,7 @@ function update() {
   }
 
     function killMonsters (monster) {
-        monster1.destroy();
+        monster.destroy();
         score++;
       if (monsters.children.length == 0){
         wave++;
