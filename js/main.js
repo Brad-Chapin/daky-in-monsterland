@@ -5,7 +5,10 @@ var game = new Phaser.Game(704, 512, Phaser.AUTO, 'daky', { preload: preload, cr
 function preload() {
   game.load.tilemap("dakymap", "assets/tiles/DIMTileMap.json", null, Phaser.Tilemap.TILED_JSON);
   game.load.image("tiles", "assets/tiles/terrain.png");
-  game.load.image("dakysprite", "assets/spritedakyfront.png");
+  game.load.image("front", "assets/spritedakyfront.png");
+  game.load.image("back", "assets/spritedakyback.png");
+  game.load.image("left", "assets/dakyleft.png");
+  game.load.image("right", "assets/dakyright.png");
   game.load.image("monst1", "assets/monst1.png");
   game.load.image("monst2", "assets/monst2.png");
   game.load.image("monst3", "assets/monst3.png");
@@ -29,7 +32,7 @@ function create() {
   map.addTilesetImage("Ground", "tiles");
   layer = map.createLayer("Cliffside");
   layer.resizeWorld();
-  player = game.add.sprite(352, 224, "dakysprite");
+  player = game.add.sprite(352, 224, "front");
 
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.physics.arcade.enable(player);
