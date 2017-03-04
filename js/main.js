@@ -15,15 +15,14 @@ function preload() {
   game.load.image("fire", "assets/fire.png");
   game.load.image("skull", 'assets/skull.png')
 
+
 }
 var map, layer, player, monster, monsters, fires;
 var moved = false;
 var wave = 0;
 var score = 0;
 var firebreath = 1;
-var playerSpawn = [352, 224];
 var spawnCount = 6;
-var spawned = [];
 var modal = document.getElementById("myModal");
 
 function create() {
@@ -224,9 +223,14 @@ function update() {
   killSkulls();
 }
 
-  $("#score").text(monsters.countDead());
-  $("#wave").text(wave +1);
+  $(".score").text(monsters.countDead());
+  $(".wave").text(wave +1);
   $("#firebreath").text(firebreath);
+  if (wave > 1){
+    $("#checkS").text("waves!");
+  } else {
+    $("#checkS").text("wave!");
+  }
 
 // end update fn
 }
