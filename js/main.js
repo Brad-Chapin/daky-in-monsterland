@@ -23,6 +23,7 @@ var wave = 0;
 var score = 0;
 var firebreath = 1;
 var spawnCount = 6;
+var wait = false;
 var modal = document.getElementById("myModal");
 
 function create() {
@@ -114,7 +115,7 @@ function create() {
     while (fires.children.length > 0){
       fires.children[0].destroy();
     }
-    monsterMove();
+    setTimeout(monsterMove, 250);
   }
 
   $("#fly").on("click", function (){
@@ -122,7 +123,7 @@ function create() {
     var y = Math.floor(Math.random()*15)*32;
     player.x =x;
     player.y = y;
-    monsterMove();
+    setTimeout(monsterMove, 250);
   });
 
   $("#upLeft").on("click", function (){
@@ -130,7 +131,7 @@ function create() {
       player.y-=32;
       player.x-=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
@@ -138,7 +139,7 @@ function create() {
     if (player.y!=0){
       player.y -= 32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
@@ -147,7 +148,7 @@ function create() {
       player.y-=32;
       player.x+=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
@@ -155,20 +156,20 @@ function create() {
     if (player.x!=0){
       player.x-=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
   $("#pass").on("click", function (){
     moved= true;
-    monsterMove();
+    setTimeout(monsterMove, 250);
   });
 
   $("#right").on("click", function (){
     if (player.x!=672){
       player.x+=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
@@ -177,7 +178,7 @@ function create() {
       player.y+=32;
       player.x-=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
@@ -185,7 +186,7 @@ function create() {
     if (player.y!=480){
       player.y+=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
 
@@ -194,7 +195,7 @@ function create() {
       player.x+=32;
       player.y+=32;
       moved = true;
-      monsterMove();
+      setTimeout(monsterMove, 250);
     }
   });
   // controls end
@@ -214,13 +215,9 @@ function update() {
   game.physics.arcade.collide(player, monsters, monsterDeath, null, this);
   game.physics.arcade.collide(fires, monsters, killMonsters, null, this);
 
-  if (monsters.countLiving() == 0){
-  wave++;
-  firebreath++;
-  spawnCount = (wave * 3) +6;
-  resetDaky();
-  addMonsters();
-  killSkulls();
+  if ((monsters.countLiving() == 0)&& (!wait)){
+    wait = true;
+    setTimeout(nextWave, 1250);
 }
 
   $(".score").text(monsters.countDead());
@@ -248,7 +245,7 @@ function update() {
     monster.kill();
   }
 
-    function killSkulls () {
+  function killSkulls () {
       while (skulls.children.length > 0){
         skulls.children[0].destroy();
       }
@@ -264,25 +261,35 @@ function update() {
         monster.kill();
       }
 
-      function addMonsters() {
-    		spawnPoints = [];
-    		spawnPoints.push(player.x + "-" + player.y);
-    		for (i = 0; i < spawnCount; i++) {
-    			var monster;
-    			var check = true;
-    			var x;
-    			var y;
-    			while (check == true) {
-    				x = Math.floor(Math.random() * 21) * 32;
-    				y = Math.floor(Math.random() * 15) * 32;
-    				if (spawnPoints.indexOf(x + "-" + y) == -1) {
-    					spawnPoints.push(x + "-" + y);
-    					monster = monsters.create(x, y, "monst" + (Math.floor(Math.random() * 3) + 1));
-    					check = false;
-    				}
-    			}
-    		}
-    	}
+  function nextWave () {
+    wave++;
+    firebreath++;
+    spawnCount = (wave * 3) +6;
+    resetDaky();
+    addMonsters();
+    killSkulls();
+    wait = false;
+  }
+
+  function addMonsters() {
+		spawnPoints = [];
+		spawnPoints.push(player.x + "-" + player.y);
+		for (i = 0; i < spawnCount; i++) {
+			var monster;
+			var check = true;
+			var x;
+			var y;
+			while (check == true) {
+				x = Math.floor(Math.random() * 21) * 32;
+				y = Math.floor(Math.random() * 15) * 32;
+				if (spawnPoints.indexOf(x + "-" + y) == -1) {
+					spawnPoints.push(x + "-" + y);
+					monster = monsters.create(x, y, "monst" + (Math.floor(Math.random() * 3) + 1));
+					check = false;
+				}
+			}
+		}
+	}
 
   function resetDaky (){
         player.x = 352;
