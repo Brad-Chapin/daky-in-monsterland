@@ -17,12 +17,14 @@ function preload() {
 
 
 }
-var map, layer, player, monster, monsters, fires, highScore, highWave;
+var map, layer, player, monster, monsters, fires;
 var moved = false;
 var wave = 0;
 var score = 0;
 var firebreath = 1;
 var spawnCount = 6;
+highWave = 1;
+highScore = 0;
 var wait = false;
 var modal = document.getElementById("myModal");
 
