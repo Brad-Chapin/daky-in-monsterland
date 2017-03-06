@@ -22,7 +22,6 @@ var moved = false;
 var wave = 0;
 var firebreath = 1;
 var spawnCount = 6;
-var highScore = 0;
 var wait = false;
 var modal = document.getElementById("myModal");
 
@@ -225,7 +224,8 @@ function update() {
   if ((monsters.countLiving() == 0)&& (!wait)){
     wait = true;
     setTimeout(nextWave, 1125);
-}
+  }
+
 
   $(".score").text(monsters.countDead());
   score = monsters.countDead();
@@ -236,6 +236,20 @@ function update() {
   } else {
     $("#checkS").text("wave!");
   }
+
+  if (score > localStorage.getItem("highScore")){
+    console.log("new high score");
+    localStorage.setItem("highScore", score);
+    highScore = localStorage.getItem("highScore");
+    console.log("new high score: ", localStorage.getItem("highScore"));
+  }
+  if (wave > localStorage.getItem("highWave")){
+    console.log("new high wave");
+    localStorage.setItem("highWave", wave);
+    highWave = localStorage.getItem("highWave");
+    console.log("new high wave: ", localStorage.getItem("highWave"));
+  }
+
   $("#highScore").text(highScore);
   $("#highWave").text(highWave);
 
@@ -312,15 +326,11 @@ function update() {
       }
 
   function gameOver (){
-    console.log(score);
-    console.log("high score: ", localStorage.getItem("highScore"));
     if (score > localStorage.getItem("highScore")){
-      console.log("new high score: ", localStorage.getItem("highScore"));
       localStorage.setItem("highScore", score);
     }
     if (wave > localStorage.getItem("highWave")){
-      console.log("new high wave");
-      localStorage.setItem("highWave", wave +1);
+      localStorage.setItem("highWave", wave);
     }
     modal.style.display = "block";
   }
