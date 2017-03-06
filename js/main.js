@@ -17,14 +17,12 @@ function preload() {
 
 
 }
-var map, layer, player, monster, monsters, fires;
+var map, layer, player, monster, monsters, fires, highScore, highWave;
 var moved = false;
 var wave = 0;
-var score = 0;
 var firebreath = 1;
 var spawnCount = 6;
-highWave = 1;
-highScore = 0;
+var highScore = 0;
 var wait = false;
 var modal = document.getElementById("myModal");
 
@@ -54,8 +52,8 @@ function create() {
 
   // localStorage.setItem("highScore", score);
   // localStorage.setItem("highWave", wave);
-  highScore = localStorage.getItem("highScore");
-  highWave = localStorage.getItem("highWave");
+  highScore = localStorage.getItem("highScore") || 0;
+  highWave = localStorage.getItem("highWave") || 1;
 
   addMonsters();
 
@@ -322,7 +320,7 @@ function update() {
     }
     if (wave > localStorage.getItem("highWave")){
       console.log("new high wave");
-      localStorage.setItem("highWave", wave);
+      localStorage.setItem("highWave", wave +1);
     }
     modal.style.display = "block";
   }
