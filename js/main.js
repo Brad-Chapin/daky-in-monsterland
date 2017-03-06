@@ -17,7 +17,7 @@ function preload() {
 
 
 }
-var map, layer, player, monster, monsters, fires;
+var map, layer, player, monster, monsters, fires, highScore, highWave;
 var moved = false;
 var wave = 0;
 var score = 0;
@@ -49,6 +49,11 @@ function create() {
   skulls = game.add.group();
   skulls.enableBody = true;
   skulls.physicsBodyType = Phaser.Physics.ARCADE;
+
+  // localStorage.setItem("highScore", score);
+  // localStorage.setItem("highWave", wave);
+  highScore = localStorage.getItem("highScore");
+  highWave = localStorage.getItem("highWave");
 
   addMonsters();
 
@@ -109,13 +114,15 @@ function create() {
     }
   });
   function timeOut(){
-    setTimeout(killFire, 1000);
+    setTimeout(killFire, 750);
   }
   function killFire (){
     while (fires.children.length > 0){
       fires.children[0].destroy();
     }
-    setTimeout(monsterMove, 250);
+    if (monsters.countLiving() != 0){
+      setTimeout(monsterMove, 125);
+    }
   }
 
   $("#fly").on("click", function (){
@@ -123,7 +130,7 @@ function create() {
     var y = Math.floor(Math.random()*15)*32;
     player.x =x;
     player.y = y;
-    setTimeout(monsterMove, 250);
+    setTimeout(monsterMove, 125);
   });
 
   $("#upLeft").on("click", function (){
@@ -131,7 +138,7 @@ function create() {
       player.y-=32;
       player.x-=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
@@ -139,7 +146,7 @@ function create() {
     if (player.y!=0){
       player.y -= 32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
@@ -148,7 +155,7 @@ function create() {
       player.y-=32;
       player.x+=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
@@ -156,20 +163,20 @@ function create() {
     if (player.x!=0){
       player.x-=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
   $("#pass").on("click", function (){
     moved= true;
-    setTimeout(monsterMove, 250);
+    setTimeout(monsterMove, 125);
   });
 
   $("#right").on("click", function (){
     if (player.x!=672){
       player.x+=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
@@ -178,7 +185,7 @@ function create() {
       player.y+=32;
       player.x-=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
@@ -186,7 +193,7 @@ function create() {
     if (player.y!=480){
       player.y+=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
 
@@ -195,7 +202,7 @@ function create() {
       player.x+=32;
       player.y+=32;
       moved = true;
-      setTimeout(monsterMove, 250);
+      setTimeout(monsterMove, 125);
     }
   });
   // controls end
@@ -217,10 +224,11 @@ function update() {
 
   if ((monsters.countLiving() == 0)&& (!wait)){
     wait = true;
-    setTimeout(nextWave, 1250);
+    setTimeout(nextWave, 1125);
 }
 
   $(".score").text(monsters.countDead());
+  score = monsters.countDead();
   $(".wave").text(wave +1);
   $("#firebreath").text(firebreath);
   if (wave > 1){
@@ -228,6 +236,8 @@ function update() {
   } else {
     $("#checkS").text("wave!");
   }
+  $("#highScore").text(highScore);
+  $("#highWave").text(highWave);
 
 // end update fn
 }
@@ -266,9 +276,8 @@ function update() {
     firebreath++;
     spawnCount = (wave * 3) +6;
     resetDaky();
-    addMonsters();
     killSkulls();
-    wait = false;
+    setTimeout(addMonsters, 300);
   }
 
   function addMonsters() {
@@ -289,6 +298,7 @@ function update() {
 				}
 			}
 		}
+      wait = false;
 	}
 
   function resetDaky (){
@@ -302,6 +312,16 @@ function update() {
       }
 
   function gameOver (){
+    console.log(score);
+    console.log("high score: ", localStorage.getItem("highScore"));
+    if (score > localStorage.getItem("highScore")){
+      console.log("new high score: ", localStorage.getItem("highScore"));
+      localStorage.setItem("highScore", score);
+    }
+    if (wave > localStorage.getItem("highWave")){
+      console.log("new high wave");
+      localStorage.setItem("highWave", wave);
+    }
     modal.style.display = "block";
   }
   $("#myModal").on("click", function (){

@@ -96,13 +96,13 @@ body {
   padding: 0;
 }
 
-.controls {
+/*.controls {
   padding-top: 20px;
-}
+}*/
 
 .firebreath-style {
-  padding: 10px 0px 10px 0px;
-  font-size: 2rem;
+  padding: 0px 0px 5px 0px;
+  font-size: 1.5rem;
 }
 
 .center-img {

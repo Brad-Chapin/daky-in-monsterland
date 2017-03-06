@@ -26,12 +26,12 @@
      <li class="play"><a href="play.html">Play</a></li>
    </ul>
  </div>
-   <h1 class="splash dakyFont title-top">Let's Play!</h1>
+   <h1 class="splash dakyFont title-top" id="playHeader">Let's Play!</h1>
  <div class="row">
    <div class="nine columns" id="daky">
      <script src="js/main.js" type="text/javascript"></script>
    </div>
-   <div class="three columns controls">
+   <div class="three columns controls" id="smallCtrl">
 
      <!-- modal start -->
      <div id="myModal" class="modal">
@@ -52,7 +52,11 @@
 </div>
      <!-- modal end -->
      <div class="row">
-       <div class="splash firebreath-style">Firebreath remaining: <span id="firebreath">1</span></div>
+       <div class="splash firebreath-style" id="fbLeft">Firebreath remaining: <span id="firebreath">1</span></div>
+     </div>
+     <div class="row">
+       <div class="splash firebreath-style high">High Score: <span id="highScore">0</span></div>
+       <div class="splash firebreath-style high">High Wave: <span id="highWave">1</span></div>
      </div>
     <div class="row">
       <div class="six columns">
