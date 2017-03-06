@@ -146,7 +146,7 @@ a{
     margin: auto;
     padding: 20px;
     border: 3px solid darkgreen;
-    width: 40%;
+    width: 55%;
 }
 
 .close-modal {
@@ -164,4 +164,18 @@ a{
 
 .over {
   padding-top: 40px;
+}
+
+.over-button {
+  float: right;
+  border: 1px solid darkgreen;
+  padding: 0px 3px 0px 3px;
+  margin-right: 5px;
+}
+.over-button2 {
+  float: left;
+  color:darkgreen;
+  border: 1px solid darkgreen;
+  padding: 0px 3px 0px 3px;
+  margin-right: 5px;
 }

@@ -232,9 +232,9 @@ function update() {
   $(".wave").text(wave +1);
   $("#firebreath").text(firebreath);
   if (wave > 1){
-    $("#checkS").text("waves!");
+    $("#checkS").text("waves! ");
   } else {
-    $("#checkS").text("wave!");
+    $("#checkS").text("wave! ");
   }
 
   if (score > localStorage.getItem("highScore")){
