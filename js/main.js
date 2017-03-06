@@ -238,16 +238,8 @@ function update() {
   }
 
   if (score > localStorage.getItem("highScore")){
-    console.log("new high score");
     localStorage.setItem("highScore", score);
     highScore = localStorage.getItem("highScore");
-    console.log("new high score: ", localStorage.getItem("highScore"));
-  }
-  if (wave > localStorage.getItem("highWave")){
-    console.log("new high wave");
-    localStorage.setItem("highWave", wave);
-    highWave = localStorage.getItem("highWave");
-    console.log("new high wave: ", localStorage.getItem("highWave"));
   }
 
   $("#highScore").text(highScore);
@@ -287,6 +279,10 @@ function update() {
 
   function nextWave () {
     wave++;
+    if (wave >= localStorage.getItem("highWave")){
+      localStorage.setItem("highWave", wave+1);
+      highWave = localStorage.getItem("highWave");
+    }
     firebreath++;
     spawnCount = (wave * 3) +6;
     resetDaky();
