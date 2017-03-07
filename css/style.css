@@ -179,3 +179,16 @@ a{
   padding: 0px 3px 0px 3px;
   margin-right: 5px;
 }
+
+#smctrl {
+  display: none;
+}
+
+@media (min-width: 1024) and (orientation: landscape) {
+  #lgCtrl {
+    display:none;
+  }
+  #smCtrl {
+    display:block;
+  }
+}
