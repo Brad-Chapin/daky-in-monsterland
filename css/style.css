@@ -154,10 +154,6 @@ a{
 
 }
 
-#daky {
-  position: relative;
-}
-
 .game-over {
   text-align: center;
   padding-top: 21px;
@@ -169,4 +165,13 @@ a{
   border: 1px solid darkgreen;
   padding: 0px 6px 0px 6px;
   margin-left: 0;
+}
+
+.over-button a {
+  text-decoration: none;
+  color: darkgreen;
+}
+
+#daky {
+  position: relative;
 }
