@@ -248,13 +248,11 @@ function update() {
 // end update fn
 }
   function skullDeath (player, skulls){
-    player.kill();
-    gameOver();
+    setTimeout(gameOver, 1000);
   }
 
   function monsterDeath (player, monsters){
-    player.kill();
-    gameOver();
+    setTimeout(gameOver, 1000);
   }
 
   function skullKill (skulls, monster) {
@@ -322,6 +320,7 @@ function update() {
       }
 
   function gameOver (){
+    player.kill();
     if (score > localStorage.getItem("highScore")){
       localStorage.setItem("highScore", score);
     }

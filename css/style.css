@@ -128,8 +128,8 @@ a{
     position:fixed;
     z-index: 1;
     padding-top: 100px;
-    left:13.5%;
-    top: 300;
+    left: 160px;
+    top: 150px;
     max-width: 600px;
     height: auto;
     /*overflow: auto;*/
@@ -167,6 +167,6 @@ a{
 .over-button {
   background-color: #00bfa5;
   border: 1px solid darkgreen;
-  padding: 0px 3px 0px 3px;
+  padding: 0px 6px 0px 6px;
   margin-left: 0;
 }
