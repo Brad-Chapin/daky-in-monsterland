@@ -329,8 +329,4 @@ function update() {
     }
     modal.style.display = "block";
   }
-  $("#myModal").on("click", function (){
-    modal.style.display = "hidden";
-  })
-
 });
