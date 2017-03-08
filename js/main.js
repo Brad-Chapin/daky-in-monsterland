@@ -10,7 +10,18 @@ if ($("#smCtrl").css("display") == "block"){
 } else {
   $("#smCtrl").remove();
 }
-console.log(gameCanvas);
+
+if (gameCanvas == "daky-sm"){
+  $("#navBar").css("display", "none");
+}
+
+$("#nav-toggle").on("click", function (){
+  if ($("#navBar").css("display")== "none"){
+    $("#navBar").css("display", "block");
+  } else {
+    $("#navBar").css("display", "none");
+  }
+});
 
 var game = new Phaser.Game(704, 512, Phaser.AUTO, gameCanvas, { preload: preload, create: create, update: update });
 
