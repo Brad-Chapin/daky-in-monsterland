@@ -19,7 +19,7 @@ function preload() {
 }
 var map, layer, player, monster, monsters, fires, highScore, highWave;
 var moved = false;
-var wave = 0;
+var wave = 1;
 var firebreath = 1;
 var spawnCount = 6;
 var wait = false;
@@ -49,8 +49,6 @@ function create() {
   skulls.enableBody = true;
   skulls.physicsBodyType = Phaser.Physics.ARCADE;
 
-  // localStorage.setItem("highScore", score);
-  // localStorage.setItem("highWave", wave);
   highScore = localStorage.getItem("highScore") || 0;
   highWave = localStorage.getItem("highWave") || 1;
 
@@ -129,6 +127,7 @@ function create() {
     var y = Math.floor(Math.random()*15)*32;
     player.x =x;
     player.y = y;
+    moved = true;
     setTimeout(monsterMove, 125);
   });
 
@@ -229,9 +228,9 @@ function update() {
 
   $(".score").text(monsters.countDead());
   score = monsters.countDead();
-  $(".wave").text(wave +1);
+  $(".wave").text(wave);
   $("#firebreath").text(firebreath);
-  if (wave > 1){
+  if (wave >= 2){
     $("#checkS").text("waves! ");
   } else {
     $("#checkS").text("wave! ");
@@ -282,9 +281,10 @@ function update() {
       highWave = localStorage.getItem("highWave");
     }
     firebreath++;
-    spawnCount = (wave * 3) +6;
+    spawnCount = ((wave -1) * 3) +6;
     resetDaky();
     killSkulls();
+    console.log(wave);
     setTimeout(addMonsters, 300);
   }
 
@@ -329,8 +329,4 @@ function update() {
     }
     modal.style.display = "block";
   }
-  $("#myModal").on("click", function (){
-    modal.style.display = "hidden";
-  })
-
 });
