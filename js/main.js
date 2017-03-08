@@ -47,6 +47,8 @@ var firebreath = 1;
 var spawnCount = 6;
 var wait = false;
 var modal = document.getElementById("myModal");
+var splash = document.getElementById("newHighScore");
+var newHS = false;
 
 function create() {
 
@@ -260,6 +262,7 @@ function update() {
   }
 
   if (score > localStorage.getItem("highScore")){
+    newHS = true;
     localStorage.setItem("highScore", score);
     highScore = localStorage.getItem("highScore");
   }
@@ -307,7 +310,6 @@ function update() {
     spawnCount = ((wave -1) * 3) +6;
     resetDaky();
     killSkulls();
-    console.log(wave);
     setTimeout(addMonsters, 300);
   }
 
@@ -345,11 +347,21 @@ function update() {
   function gameOver (){
     player.kill();
     if (score > localStorage.getItem("highScore")){
+      newHS = true;
       localStorage.setItem("highScore", score);
     }
     if (wave > localStorage.getItem("highWave")){
       localStorage.setItem("highWave", wave);
     }
+    if (newHS == true){
+      splash.style.display = "block";
+      newHS = false;
+      setTimeout(splashOff, 4000);
+    }
     modal.style.display = "block";
+  }
+
+  function splashOff () {
+    splash.style.display = "none";
   }
 });

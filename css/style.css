@@ -161,7 +161,26 @@ a{
   display: inline;
   max-height: 50px;
   width:200px;
+}
 
+#newHighScore {
+  animation-duration: 2s;
+  animation-name: flashText;
+  animation-iteration-count: infinite;
+  background-color: white;
+  padding: 20px;
+  border: 3px solid blue;
+  width: 475px;
+  display: none;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  height: auto;
+  transform: translateY(-50%);
+  color: red;
 }
 
 .game-over {
@@ -189,6 +208,13 @@ a:hover {
   display: none;
 }
 
+@keyframes flashText {
+  from {color:red;}
+  to {color:blue;}
+  from {border-color:blue;}
+  to {border-color:red;}
+}
+
 @media only screen and (max-width: 1024px) {
 
   #lgCtrl {
@@ -202,6 +228,7 @@ a:hover {
     display: none;
   }
 
-#daky {
+#myModal {
   position: relative;
+}
 }
