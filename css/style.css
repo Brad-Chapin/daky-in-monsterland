@@ -208,6 +208,11 @@ a:hover {
   display: none;
 }
 
+
+#myModal {
+  position: relative;
+}
+
 @keyframes flashText {
   from {color:red;}
   to {color:blue;}
@@ -215,8 +220,7 @@ a:hover {
   to {border-color:red;}
 }
 
-@media only screen and (max-width: 1024px) {
-
+@media (max-width: 1024px) {
   #lgCtrl {
     display: none;
   }
@@ -227,8 +231,4 @@ a:hover {
   #playHeader {
     display: none;
   }
-
-#myModal {
-  position: relative;
-}
 }
