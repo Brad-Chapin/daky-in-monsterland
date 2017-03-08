@@ -113,6 +113,7 @@ body {
 
 .tblt-left {
   justify-content: flex-start;
+  padding-left: 5px;
 }
 
 /*fonts*/
@@ -187,6 +188,7 @@ a{
   }
   #smCtrl {
     display: block;
+    padding-top: 20px;
   }
   #playHeader {
     display: none;
