@@ -78,6 +78,7 @@ body {
   height:94px;
   width:94px;
   margin: 0px 3px 3px 3px;
+  display: inline-block;
 }
 
 .top-ctrl {
@@ -104,6 +105,14 @@ body {
 .center-img {
   display: block;
   margin: 0 auto;
+}
+
+.tblt {
+  display:inline-block;
+}
+
+.tblt-left {
+  justify-content: flex-start;
 }
 
 /*fonts*/
@@ -167,25 +176,22 @@ a{
   margin-left: 0;
 }
 
-<<<<<<< HEAD
-#smctrl {
+#smCtrl {
   display: none;
 }
 
-@media (min-width: 1024) and (orientation: landscape) {
+@media only screen and (max-width: 1024px) {
+
   #lgCtrl {
-    display:none;
+    display: none;
   }
   #smCtrl {
-    display:block;
+    display: block;
   }
-=======
-.over-button a {
-  text-decoration: none;
-  color: darkgreen;
-}
+  #playHeader {
+    display: none;
+  }
 
 #daky {
   position: relative;
->>>>>>> c454fd351f473e5020b17bc599b40e4f0070fe2e
 }

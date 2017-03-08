@@ -1,6 +1,18 @@
 $( document ).ready(function() {
 
-var game = new Phaser.Game(704, 512, Phaser.AUTO, 'daky', { preload: preload, create: create, update: update });
+//Query both divs and find the one where display == block;
+
+let gameCanvas = "daky-lg";
+
+if ($("#smCtrl").css("display") == "block"){
+  gameCanvas = "daky-sm";
+  $("#lgCtrl").remove()
+} else {
+  $("#smCtrl").remove();
+}
+console.log(gameCanvas);
+
+var game = new Phaser.Game(704, 512, Phaser.AUTO, gameCanvas, { preload: preload, create: create, update: update });
 
 function preload() {
   game.load.tilemap("dakymap", "assets/tiles/DIMTileMap.json", null, Phaser.Tilemap.TILED_JSON);

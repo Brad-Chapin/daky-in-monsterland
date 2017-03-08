@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="/assets/favicon.png">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="js/phaser.min.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
     <title>Daky in Monsterland: Play</title>
 </head>
 <body class="container">
@@ -25,9 +26,8 @@
         </ul>
     </div>
     <h1 class="splash dakyFont title-top" id="playHeader">Let's Play!</h1>
-    <div class="row">
-        <div class="nine columns" id="daky">
-            <script src="js/main.js" type="text/javascript"></script>
+    <div class="row" id="lgCtrl">
+        <div class="nine columns" id="daky-lg">
             <!-- modal start -->
             <div class="modal-content" id="myModal">
                 <div>
@@ -115,9 +115,68 @@
       <!-- full screen controls end -->
 
        <!-- tablet controls begin -->
+       <div id="smCtrl">
+       <div class="row">
+         <div class="twelve columns" id="daky-sm">
+             <!-- modal start -->
+             <div class="modal-content" id="myModal">
+                 <div>
+                     <div class="modal-row">
+                         <h2 class="dakyFont">Game Over!</h2>
+                         <div class="modal-image">
+                             <img src="assets/deaddaky.png" alt="">
+                         </div>
+                     </div>
+                 </div>
+                 <div class="modal-row">
+                     <button class="over-button">You earned <span class="score"></span> points over <span class="wave"></span> <span id="checkS"></span></button><button class="over-button"><a href="play.html">New game? </a></button><button class="over-button"><a href="index.html">Or go home?</a></button>
+                 </div>
+             </div>
+             <!-- modal end -->
+         </div>
+       </div>
+       <div class="row tblt-left">
+         <div class="firebreath-style" id="fbLeft">Firebreath remaining: <span id="firebreath">1</span> High Score: <span id="highScore">0</span> High Wave: <span id="highWave">1</span></div>
+       </div>
+       <div class="row">
+         <div class="tblt">
+           <div class="row ">
+                   <div class="top-disp splash">
+                       <p>Score</p>
+                       <p class="score">0</p>
+                   </div>
+                   <div class="top-disp splash">
+                       <p>Wave</p>
+                       <p class="wave">1</p>
+                   </div>
+           </div>
+           <div class="row">
+                   <button class="top-ctrl" id="fire"><img src="assets/firebreath.png" alt="Daky's fire"></button>
+                   <button class="top-ctrl" id="fly"><img src="assets/fly.png" alt="Daky's wings"></button>
+           </div>
+         </div>
+         <div class="tblt">
+           <div class="row">
+                   <button class="dir splash" id="upLeft"><img src="assets/ultail.png" alt="daky's tail"></button>
+                   <button class="dir splash" id="up"><img src="assets/uptail.png" alt="daky's tail"></button>
+                   <button class="dir splash" id="upRight"><img src="assets/urtail.png" alt="daky's tail"></button>
+           </div>
+           <div class="row">
+                   <button class="dir splash" id="left"><img src="assets/lefttail.png" alt="daky's tail"></button>
+                   <button class="dir splash" id="pass"><img src="assets/paws.png" alt="Daky's paws"></button>
+                   <button class="dir splash" id="right"><img src="assets/righttail.png" alt=""></button>
+           </div>
+           <div class="row">
+                   <button class="dir splash" id="downLeft"><img src="assets/dltail.png" alt="daky's tail"></button>
+                   <button class="dir splash" id="down"><img src="assets/downtail.png" alt="daky's tail"></button>
+                   <button class="dir splash" id="downRight"><img src="assets/drtail.png" alt=""></button>
+           </div>
+         </div>
+       </div>
+       </div>
+       <!-- tablet controls end -->
 
 </body>
-
 </html>
 
 <!--  -->
