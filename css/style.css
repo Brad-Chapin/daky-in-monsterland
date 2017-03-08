@@ -177,6 +177,14 @@ a{
   margin-left: 0;
 }
 
+.over-button a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: darkgreen;
+}
+
 #smCtrl {
   display: none;
 }
