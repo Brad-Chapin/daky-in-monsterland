@@ -209,9 +209,9 @@ a:hover {
 }
 
 
-#myModal {
+/*#myModal {
   position: relative;
-}
+}*/
 
 @keyframes flashText {
   from {color:red;}
@@ -220,7 +220,7 @@ a:hover {
   to {border-color:red;}
 }
 
-@media (max-width: 1024px) {
+@media only screen and(max-width: 1024px) {
   #lgCtrl {
     display: none;
   }
