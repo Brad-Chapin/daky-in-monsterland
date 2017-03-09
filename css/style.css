@@ -209,9 +209,9 @@ a:hover {
 }
 
 
-/*#myModal {
+.relaDiv {
   position: relative;
-}*/
+}
 
 @keyframes flashText {
   from {color:red;}
