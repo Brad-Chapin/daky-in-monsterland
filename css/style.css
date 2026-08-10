@@ -121,8 +121,8 @@ a{
   color: darkgreen;
 }
 @font-face {
-    font-family: 'agentorange';
-    src: url('../fonts/agentorange.ttf') format('truetype');
+    font-family: 'AGENTORANGE';
+    src: url('../fonts/AGENTORANGE.TTF') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
